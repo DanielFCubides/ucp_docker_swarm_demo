@@ -24,19 +24,19 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0eservices.proto\x12\x0cvisitcounter\"\t\n\x07Request\"M\n\rVisitResponse\x12\x13\n\x0bvisit_count\x18\x01 \x01(\x03\x12\x19\n\x11local_visit_count\x18\x02 \x01(\x03\x12\x0c\n\x04host\x18\x03 \x01(\t\"9\n\x13HealthCheckResponse\x12\x0f\n\x07version\x18\x01 \x01(\t\x12\x11\n\ttimestamp\x18\x02 \x01(\t2\x9c\x01\n\x0cVisitService\x12\x43\n\rGetVisitCount\x12\x15.visitcounter.Request\x1a\x1b.visitcounter.VisitResponse\x12G\n\x0bHealthCheck\x12\x15.visitcounter.Request\x1a!.visitcounter.HealthCheckResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0eservices.proto\x12\rreportservice\"\t\n\x07Request\"M\n\rVisitResponse\x12\x13\n\x0bvisit_count\x18\x01 \x01(\x03\x12\x19\n\x11local_visit_count\x18\x02 \x01(\x03\x12\x0c\n\x04host\x18\x03 \x01(\t\"9\n\x13HealthCheckResponse\x12\x0f\n\x07version\x18\x01 \x01(\t\x12\x11\n\ttimestamp\x18\x02 \x01(\t2\xa0\x01\n\x0cVisitService\x12\x45\n\rGetVisitCount\x12\x16.reportservice.Request\x1a\x1c.reportservice.VisitResponse\x12I\n\x0bHealthCheck\x12\x16.reportservice.Request\x1a\".reportservice.HealthCheckResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'services_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_REQUEST']._serialized_start=32
-  _globals['_REQUEST']._serialized_end=41
-  _globals['_VISITRESPONSE']._serialized_start=43
-  _globals['_VISITRESPONSE']._serialized_end=120
-  _globals['_HEALTHCHECKRESPONSE']._serialized_start=122
-  _globals['_HEALTHCHECKRESPONSE']._serialized_end=179
-  _globals['_VISITSERVICE']._serialized_start=182
-  _globals['_VISITSERVICE']._serialized_end=338
+  _globals['_REQUEST']._serialized_start=33
+  _globals['_REQUEST']._serialized_end=42
+  _globals['_VISITRESPONSE']._serialized_start=44
+  _globals['_VISITRESPONSE']._serialized_end=121
+  _globals['_HEALTHCHECKRESPONSE']._serialized_start=123
+  _globals['_HEALTHCHECKRESPONSE']._serialized_end=180
+  _globals['_VISITSERVICE']._serialized_start=183
+  _globals['_VISITSERVICE']._serialized_end=343
 # @@protoc_insertion_point(module_scope)

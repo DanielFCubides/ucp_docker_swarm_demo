@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package visitcounter;
+package reportservice;
 
 service VisitService {
   rpc GetVisitCount(Request) returns (VisitResponse);

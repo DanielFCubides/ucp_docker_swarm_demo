@@ -28,7 +28,6 @@ class VisitServiceServicer(services_pb2_grpc.VisitServiceServicer):
             local_visit_count=self.visit_count,
             host=self.host
         )
-        print(response)
         return response
 
     def HealthCheck(self, request, context):

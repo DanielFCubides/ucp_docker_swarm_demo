@@ -35,12 +35,12 @@ class VisitServiceStub(object):
             channel: A grpc.Channel.
         """
         self.GetVisitCount = channel.unary_unary(
-                '/visitcounter.VisitService/GetVisitCount',
+                '/reportservice.VisitService/GetVisitCount',
                 request_serializer=services__pb2.Request.SerializeToString,
                 response_deserializer=services__pb2.VisitResponse.FromString,
                 _registered_method=True)
         self.HealthCheck = channel.unary_unary(
-                '/visitcounter.VisitService/HealthCheck',
+                '/reportservice.VisitService/HealthCheck',
                 request_serializer=services__pb2.Request.SerializeToString,
                 response_deserializer=services__pb2.HealthCheckResponse.FromString,
                 _registered_method=True)
@@ -76,9 +76,9 @@ def add_VisitServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'visitcounter.VisitService', rpc_method_handlers)
+            'reportservice.VisitService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('visitcounter.VisitService', rpc_method_handlers)
+    server.add_registered_method_handlers('reportservice.VisitService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -99,7 +99,7 @@ class VisitService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/visitcounter.VisitService/GetVisitCount',
+            '/reportservice.VisitService/GetVisitCount',
             services__pb2.Request.SerializeToString,
             services__pb2.VisitResponse.FromString,
             options,
@@ -126,7 +126,7 @@ class VisitService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/visitcounter.VisitService/HealthCheck',
+            '/reportservice.VisitService/HealthCheck',
             services__pb2.Request.SerializeToString,
             services__pb2.HealthCheckResponse.FromString,
             options,
