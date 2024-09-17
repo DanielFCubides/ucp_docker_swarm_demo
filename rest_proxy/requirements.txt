@@ -1,0 +1,4 @@
+fastapi[standard]
+grpcio
+protobuf
+pydantic
