@@ -1,0 +1,32 @@
+services:
+  report_service:
+    build: ./report_service/.
+    ports:
+      - "50051:50051"
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - NAME=report_service
+    volumes:
+      - ./report_service:/app
+    networks:
+      - ucp_net
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - ucp_net
+
+volumes:
+  redis_data:
+  report_service:
+
+networks:
+  ucp_net:
+    driver: bridge
