@@ -4,8 +4,7 @@ from fastapi import FastAPI, APIRouter
 import grpc
 
 from lib import response_model
-from proto import services_pb2
-from proto import services_pb2_grpc
+from proto import services_pb2, services_pb2_grpc
 
 tags_metadata = [
     {
@@ -18,7 +17,7 @@ tags_metadata = [
     },
 ]
 
-server = os.environ.get('GRPC_SERVER', 'localhost:50051')
+server = os.environ.get("GRPC_SERVER", "localhost:50051")
 channel = grpc.insecure_channel(server)
 stub = services_pb2_grpc.VisitServiceStub(channel)
 
