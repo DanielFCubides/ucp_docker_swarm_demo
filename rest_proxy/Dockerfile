@@ -1,4 +1,4 @@
-# docker build -f rest_proxy/Dockerfile . -t ts/reporting/rest-proxy:development --target=production
+# docker compose -f deploy-compose.yml build rest-proxy
 
 FROM python:3.11-slim AS base
 WORKDIR /code
@@ -6,7 +6,7 @@ WORKDIR /code
 
 FROM base AS builder
 COPY rest_proxy/requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 
 FROM builder AS development
