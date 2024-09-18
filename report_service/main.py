@@ -5,8 +5,8 @@ import socket
 import threading
 from datetime import datetime
 
-import services_pb2
-import services_pb2_grpc
+from proto import services_pb2
+from proto import services_pb2_grpc
 
 from redis_client import get_redis_client
 

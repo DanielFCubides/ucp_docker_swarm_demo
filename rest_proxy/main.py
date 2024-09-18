@@ -4,8 +4,8 @@ from fastapi import FastAPI, APIRouter
 import grpc
 
 from lib import response_model
-import services_pb2
-import services_pb2_grpc
+from proto import services_pb2
+from proto import services_pb2_grpc
 
 tags_metadata = [
     {
