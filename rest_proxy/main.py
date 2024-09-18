@@ -1,10 +1,12 @@
+import logging
 import time
 
 from fastapi import FastAPI, APIRouter
 
 from lib import response_model
+from lib.grpc_connection import GRPCClient
 
-LOCAL_VISITS = 0
+logger = logging.getLogger(__name__)
 
 tags_metadata = [
     {
@@ -23,17 +25,20 @@ router = APIRouter()
 
 @router.get("/ping/", tags=["ping"])
 async def ping() -> response_model.PingResponse:
-    version = 1
-    timestamp = int(time.time())
-    return {"version": version, "timestamp": timestamp}
+    client = GRPCClient(hostname="report_service", port="50051")
+    response = client.execute(
+        rpc_method_name="HealthCheck", protobuf_msg_name="Request", metadata=""
+    )
+    return response
 
 
 @router.get("/report/visits/", tags=["reports"])
 async def visit_report() -> response_model.VisitReportResponse:
-    global LOCAL_VISITS
-    LOCAL_VISITS += 1
-    shared = 1
-    return {"local_visits": LOCAL_VISITS, "shared_visits": shared}
+    client = GRPCClient(hostname="report_service", port="50051")
+    response = client.execute(
+        rpc_method_name="GetVisitCount", protobuf_msg_name="Request", metadata=""
+    )
+    return response
 
 
 app.include_router(router)
