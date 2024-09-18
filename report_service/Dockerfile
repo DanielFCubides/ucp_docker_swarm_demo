@@ -12,6 +12,6 @@ EXPOSE 50051
 
 FROM builder AS production
 COPY report_service/ /app/
-COPY proto/ /app
+COPY proto/ /app/proto
 ENTRYPOINT [ "python", "main.py" ]
 EXPOSE 50051

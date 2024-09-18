@@ -18,6 +18,18 @@ services:
         condition: on-failure
         delay: 5s
         max_attempts: 1
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 300M
+        update_config:
+          parallelism: 1
+          failure_action: rollback
+          delay: 10s
+          order: start-first
 
   frontend-fake-portal:
     build: ./frontend/fake-unified-portal/.
@@ -45,7 +57,19 @@ services:
       restart_policy:
         condition: on-failure
         delay: 5s
-        max_attempts: 1    
+        max_attempts: 1
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 300M
+        update_config:
+          parallelism: 1
+          failure_action: rollback
+          delay: 10s
+          order: start-first
 
   redis:
     image: redis:latest
@@ -58,6 +82,18 @@ services:
         condition: on-failure
         delay: 5s
         max_attempts: 1
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 300M
+        update_config:
+          parallelism: 1
+          failure_action: rollback
+          delay: 10s
+          order: start-first
 
 volumes:
   redis_data:
