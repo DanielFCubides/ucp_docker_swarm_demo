@@ -23,10 +23,10 @@ services:
     container_name: frontend-fake-portal
     build: ./frontend/fake-unified-portal/.
     ports:
-      - "3000:3000"
+      - "3005:3005"
     volumes:
-      - "./src:/app/frontend/fake-unified-portal/src"
-      - "./package.json:/app/frontend/fake-unified-portal/package.json"
+      - "./frontend/fake-unified-portal/src:/app/src"
+      - "./frontend/fake-unified-portal/package.json:/app/package.json"
     command: "npm start"
 
   rest-proxy:
