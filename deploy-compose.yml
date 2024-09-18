@@ -32,10 +32,11 @@ services:
           order: start-first
 
   frontend-fake-portal:
+    image: 127.0.0.1:5000/report-service-frontend:production
     build: ./frontend/fake-unified-portal/.
     ports:
       - 81:3005
-    command: "npm start"
+    entrypoint: "npm start"
 
   report_service:
     image: 127.0.0.1:5000/report-service:production
