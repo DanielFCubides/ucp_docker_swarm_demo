@@ -1,0 +1,11 @@
+services:
+  rest-proxy:
+    image: 127.0.0.1:5000/rest-proxy:development
+    build: 
+      context: .
+      dockerfile: rest_proxy/Dockerfile
+      target: production
+    ports:
+      - 8000:8000
+    entrypoint: fastapi dev main.py
+    command: --host 0.0.0.0 --port 8000
