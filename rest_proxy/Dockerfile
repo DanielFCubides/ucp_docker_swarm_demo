@@ -16,6 +16,6 @@ EXPOSE 8000
 
 
 FROM builder AS production
-COPY rest_proxy/main.py rest_proxy/lib/ ./
+COPY rest_proxy/. .
 ENTRYPOINT fastapi run main.py
 EXPOSE 8000
