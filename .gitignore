@@ -3,6 +3,7 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+.idea/
 
 
 ### VisualStudioCode ###
@@ -32,3 +33,4 @@ __pycache__/
 
 # Pyenv
 .python-version
+

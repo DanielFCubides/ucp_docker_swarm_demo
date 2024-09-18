@@ -19,6 +19,16 @@ services:
     volumes:
       - ./report_service:/app
 
+  frontend-fake-portal:
+    container_name: frontend-fake-portal
+    build: ./frontend/fake-unified-portal/.
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./src:/app/frontend/fake-unified-portal/src"
+      - "./package.json:/app/frontend/fake-unified-portal/package.json"
+    command: "npm start"
+
   rest-proxy:
     image: ts/reporting/rest-proxy:development
     container_name: ts_reporting_rest-proxy
