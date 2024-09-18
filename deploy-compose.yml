@@ -1,7 +1,7 @@
 services:
   rest-proxy:
     image: 127.0.0.1:5000/rest-proxy:production
-    build: 
+    build:
       context: .
       dockerfile: ./rest_proxy/Dockerfile
       target: production
@@ -11,6 +11,13 @@ services:
     command: --host 0.0.0.0 --port 8000
     depends_on:
       - report_service
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 1
 
   frontend-fake-portal:
     build: ./frontend/fake-unified-portal/.
@@ -20,7 +27,7 @@ services:
 
   report_service:
     image: 127.0.0.1:5000/report-service:production
-    build: 
+    build:
       context: .
       dockerfile: ./report_service/Dockerfile
       target: production
@@ -32,13 +39,25 @@ services:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - NAME=report_service
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 1
 
   redis:
     image: redis:latest
     ports:
       - "6379:6379"
-    volumes:
-      - redis_data:/data
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 1
 
 volumes:
   redis_data:
