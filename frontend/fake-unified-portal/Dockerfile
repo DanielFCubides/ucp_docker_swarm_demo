@@ -10,5 +10,10 @@ WORKDIR /app
 
 COPY . .
 RUN npm run build
+
+ENV NODE_ENV=production
 EXPOSE 3005
-CMD ["npm","start"]
+ENV PORT=3005
+
+ENV HOSTNAME="0.0.0.0"
+CMD ["node", "server.js"]
