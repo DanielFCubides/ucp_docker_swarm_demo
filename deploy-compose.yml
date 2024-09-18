@@ -13,17 +13,30 @@ services:
       - report_service
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 1
       restart_policy:
         condition: on-failure
         delay: 5s
         max_attempts: 1
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 300M
+        update_config:
+          parallelism: 1
+          failure_action: rollback
+          delay: 10s
+          order: start-first
 
   frontend-fake-portal:
+    image: 127.0.0.1:5000/report-service-frontend:production
     build: ./frontend/fake-unified-portal/.
     ports:
-      - "3005:3005"
-    command: "npm start"
+      - 81:3005
+    entrypoint: "npm start"
 
   report_service:
     image: 127.0.0.1:5000/report-service:production
@@ -32,7 +45,7 @@ services:
       dockerfile: ./report_service/Dockerfile
       target: production
     ports:
-      - "50051:50051"
+      - 50051
     depends_on:
       - redis
     environment:
@@ -46,6 +59,18 @@ services:
         condition: on-failure
         delay: 5s
         max_attempts: 1
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 300M
+        update_config:
+          parallelism: 1
+          failure_action: rollback
+          delay: 10s
+          order: start-first
 
   redis:
     image: redis:latest
@@ -58,6 +83,18 @@ services:
         condition: on-failure
         delay: 5s
         max_attempts: 1
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 300M
+        update_config:
+          parallelism: 1
+          failure_action: rollback
+          delay: 10s
+          order: start-first
 
 volumes:
   redis_data:
