@@ -1,11 +1,38 @@
 services:
   rest-proxy:
-    image: 127.0.0.1:5000/rest-proxy:development
+    image: 127.0.0.1:5000/rest-proxy:production
     build: 
       context: .
-      dockerfile: rest_proxy/Dockerfile
+      dockerfile: ./rest_proxy/Dockerfile
       target: production
     ports:
       - 8000:8000
-    entrypoint: fastapi dev main.py
+    entrypoint: fastapi run main.py
     command: --host 0.0.0.0 --port 8000
+    depends_on:
+      - report_service
+
+  report_service:
+    image: 127.0.0.1:5000/report-service:production
+    build: 
+      context: .
+      dockerfile: ./report_service/Dockerfile
+      target: production
+    ports:
+      - "50051:50051"
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - NAME=report_service
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:

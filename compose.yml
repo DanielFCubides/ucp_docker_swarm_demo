@@ -1,4 +1,11 @@
 services:
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
   report_service:
     build: ./report_service/.
     ports:
@@ -12,13 +19,6 @@ services:
     volumes:
       - ./report_service:/app
 
-  redis:
-    image: redis:latest
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-
   rest-proxy:
     image: ts/reporting/rest-proxy:development
     container_name: ts_reporting_rest-proxy
@@ -31,10 +31,12 @@ services:
     environment:
       - GRPC_SERVER=report_service:50051
     volumes:
-      - ./:/code
+      - ./rest_proxy/:/code/rest_proxy/
     working_dir: /code/rest_proxy
     entrypoint: fastapi dev main.py
     command: --host 0.0.0.0 --port 8000
+    depends_on:
+      - report_service
 
 volumes:
   redis_data:
