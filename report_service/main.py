@@ -10,12 +10,14 @@ import services_pb2_grpc
 
 from redis_client import get_redis_client
 
+VERSION = "0.0.1"
+
 class VisitServiceServicer(services_pb2_grpc.VisitServiceServicer):
     def __init__(self):
         self.visit_count = 0
         self.host = os.environ.get('NAME', 'localhost')
         self.lock = threading.Lock()
-        self.version = os.environ.get('VERSION', '0.0.1')
+        self.version = VERSION
         self.redis_client = get_redis_client()
 
     def GetVisitCount(self, request, context):
