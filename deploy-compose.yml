@@ -13,7 +13,7 @@ services:
       - report_service
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 1
       restart_policy:
         condition: on-failure
         delay: 5s
@@ -32,10 +32,11 @@ services:
           order: start-first
 
   frontend-fake-portal:
+    image: 127.0.0.1:5000/report-service-frontend:production
     build: ./frontend/fake-unified-portal/.
     ports:
-      - "3005:3005"
-    command: "npm start"
+      - 81:3005
+    entrypoint: "npm start"
 
   report_service:
     image: 127.0.0.1:5000/report-service:production
@@ -44,7 +45,7 @@ services:
       dockerfile: ./report_service/Dockerfile
       target: production
     ports:
-      - "50051:50051"
+      - 50051
     depends_on:
       - redis
     environment:
