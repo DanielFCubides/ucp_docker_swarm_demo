@@ -1,7 +1,8 @@
 import {getVisitors} from "@/services/reports";
+import type {Visitors} from "@/services/reports";
 
 export default async function Home() {
-  const visits = await getVisitors();
+  const visits: Visitors = await getVisitors();
 
   return (
     <div>
