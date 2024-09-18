@@ -10,7 +10,7 @@ import services_pb2_grpc
 
 from redis_client import get_redis_client
 
-VERSION = "0.0.2"
+VERSION = "0.0.1"
 
 class VisitServiceServicer(services_pb2_grpc.VisitServiceServicer):
     def __init__(self):
