@@ -28,6 +28,8 @@ services:
       target: development
     ports:
       - 8000:8000
+    environment:
+      - GRPC_SERVER=report_service:50051
     volumes:
       - ./:/code
     working_dir: /code/rest_proxy

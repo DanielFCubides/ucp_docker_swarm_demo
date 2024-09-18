@@ -4,7 +4,7 @@
 
 #### Make sure proto files exists
 ```shell
-python -m grpc_tools.protoc -I. --python_out=./report_service --grpc_python_out=./report_service services.proto
+make proto-build
 ```
 
 ```shell
@@ -14,6 +14,12 @@ docker compose up report_service -d
 
 
 ## Rest Proxy
+
+#### Make sure proto files exists
+```shell
+make proto-build
+```
+
 ### Building the image
 ```
 docker-compose build rest-proxy
