@@ -28,6 +28,7 @@ var
 *~
 *.dat
 *.bkp.*
+__pycache__/
 
 # Pyenv
 .python-version
