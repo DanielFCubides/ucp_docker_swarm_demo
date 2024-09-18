@@ -7,7 +7,9 @@ services:
       - redis_data:/data
 
   report_service:
-    build: ./report_service/.
+    build:
+      context: .
+      dockerfile: report_service/Dockerfile
     ports:
       - "50051:50051"
     depends_on:
@@ -18,6 +20,17 @@ services:
       - NAME=report_service
     volumes:
       - ./report_service:/app
+      - ./proto:/app/proto
+
+  frontend-fake-portal:
+    container_name: frontend-fake-portal
+    build: ./frontend/fake-unified-portal/.
+    ports:
+      - "3005:3005"
+    volumes:
+      - "./frontend/fake-unified-portal/src:/app/src"
+      - "./frontend/fake-unified-portal/package.json:/app/package.json"
+    command: "npm start"
 
   rest-proxy:
     image: ts/reporting/rest-proxy:development
@@ -28,10 +41,9 @@ services:
       target: development
     ports:
       - 8000:8000
-    environment:
-      - GRPC_SERVER=report_service:50051
     volumes:
       - ./rest_proxy/:/code/rest_proxy/
+      - ./proto:/code/rest_proxy/proto
     working_dir: /code/rest_proxy
     entrypoint: fastapi dev main.py
     command: --host 0.0.0.0 --port 8000
