@@ -1,8 +1,6 @@
 import logging
-import os
 
 from fastapi import FastAPI, APIRouter
-import grpc
 
 from lib import response_model
 from lib.grpc_connection import GRPCClient

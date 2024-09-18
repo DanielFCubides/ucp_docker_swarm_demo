@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-import proto.services_pb2 as services__pb2
+from proto import services_pb2 as proto_dot_services__pb2
 
 GRPC_GENERATED_VERSION = '1.66.1'
 GRPC_VERSION = grpc.__version__
@@ -18,7 +18,7 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in services_pb2_grpc.py depends on'
+        + f' but the generated code in proto/services_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -36,13 +36,13 @@ class VisitServiceStub(object):
         """
         self.GetVisitCount = channel.unary_unary(
                 '/reportservice.VisitService/GetVisitCount',
-                request_serializer=services__pb2.Request.SerializeToString,
-                response_deserializer=services__pb2.VisitResponse.FromString,
+                request_serializer=proto_dot_services__pb2.Request.SerializeToString,
+                response_deserializer=proto_dot_services__pb2.VisitResponse.FromString,
                 _registered_method=True)
         self.HealthCheck = channel.unary_unary(
                 '/reportservice.VisitService/HealthCheck',
-                request_serializer=services__pb2.Request.SerializeToString,
-                response_deserializer=services__pb2.HealthCheckResponse.FromString,
+                request_serializer=proto_dot_services__pb2.Request.SerializeToString,
+                response_deserializer=proto_dot_services__pb2.HealthCheckResponse.FromString,
                 _registered_method=True)
 
 
@@ -66,13 +66,13 @@ def add_VisitServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetVisitCount': grpc.unary_unary_rpc_method_handler(
                     servicer.GetVisitCount,
-                    request_deserializer=services__pb2.Request.FromString,
-                    response_serializer=services__pb2.VisitResponse.SerializeToString,
+                    request_deserializer=proto_dot_services__pb2.Request.FromString,
+                    response_serializer=proto_dot_services__pb2.VisitResponse.SerializeToString,
             ),
             'HealthCheck': grpc.unary_unary_rpc_method_handler(
                     servicer.HealthCheck,
-                    request_deserializer=services__pb2.Request.FromString,
-                    response_serializer=services__pb2.HealthCheckResponse.SerializeToString,
+                    request_deserializer=proto_dot_services__pb2.Request.FromString,
+                    response_serializer=proto_dot_services__pb2.HealthCheckResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -100,8 +100,8 @@ class VisitService(object):
             request,
             target,
             '/reportservice.VisitService/GetVisitCount',
-            services__pb2.Request.SerializeToString,
-            services__pb2.VisitResponse.FromString,
+            proto_dot_services__pb2.Request.SerializeToString,
+            proto_dot_services__pb2.VisitResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -127,8 +127,8 @@ class VisitService(object):
             request,
             target,
             '/reportservice.VisitService/HealthCheck',
-            services__pb2.Request.SerializeToString,
-            services__pb2.HealthCheckResponse.FromString,
+            proto_dot_services__pb2.Request.SerializeToString,
+            proto_dot_services__pb2.HealthCheckResponse.FromString,
             options,
             channel_credentials,
             insecure,
