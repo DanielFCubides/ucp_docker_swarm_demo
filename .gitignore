@@ -1,0 +1,34 @@
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+
+### Python ###
+*.pyc
+*.so
+*.egg*
+build
+dist
+var
+*.orig
+*~
+*.dat
+*.bkp.*
+__pycache__/
+
+# Pyenv
+.python-version
