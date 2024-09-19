@@ -1,13 +1,16 @@
-import {getVisitors} from "@/services/reports";
+import {getPing, getVisitors} from "@/services/reports";
+import {Visits} from "@/app/(home)/components/visits/Visits";
+import "./page.scss";
 
 export default async function Home() {
   const visits = await getVisitors();
+  const ping = await getPing();
 
   return (
-    <div>
-      <h1>Visits</h1>
-      <h1>visit count {visits.visit_count}</h1>
-      <h1>local count {visits.local_visit_count}</h1>
+    <div className="principal-widget">
+        <h1>Hi Test, welcome back to Telesign!</h1>
+        <p className="version-widget"><b>Version:</b> {ping.version} - <b>Timestamp</b>: {ping.timestamp}</p>
+        <Visits visits={visits} />
     </div>
   );
 }

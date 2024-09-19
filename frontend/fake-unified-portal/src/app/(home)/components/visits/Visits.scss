@@ -1,0 +1,10 @@
+.visits-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 50px;
+  .visit-counter {
+    font-size: 5rem;
+  }
+}
