@@ -1,0 +1,28 @@
+.navbar {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 0 40px 0 20px;
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 15px 0;
+  }
+}
+.navbar-info {
+  width: 100%;
+  padding: 10px 0 10px 276px;
+  background-color: var(--bg-gray);
+  box-shadow: rgba(34, 36, 38, 0.15) 0 1px 2px 0;
+  border-top: solid 1px var(--border-color);
+  .link-fake {
+    color: var(--primary-color);
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
