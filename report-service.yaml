@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: report-service
+  name: report-service
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: report-service
+  template:
+    metadata:
+      labels:
+        app: report-service
+    spec:
+      containers:
+      - image: report-service:k8s
+        imagePullPolicy: IfNotPresent
+        name: report-service
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        env:
+        - name: REDIS_HOST
+          value: "redis-cache"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: NAME
+          value: "report_service"
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: report-service
+  name: report-service
+  namespace: default
+spec:
+  clusterIP: 10.105.119.13
+  clusterIPs:
+  - 10.105.119.13
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 32437
+    port: 50051
+    protocol: TCP
+    targetPort: 50051
+  selector:
+    app: report-service
+  sessionAffinity: None
+  type: NodePort
