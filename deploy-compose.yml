@@ -38,7 +38,7 @@ services:
     entrypoint: "npm start"
 
   report_service:
-    image: 127.0.0.1:5000/report-service:production
+    image: report-service:k8s
     build:
       context: .
       dockerfile: ./report_service/Dockerfile
