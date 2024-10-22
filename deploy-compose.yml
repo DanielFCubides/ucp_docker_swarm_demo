@@ -31,7 +31,7 @@ services:
         order: start-first
 
   frontend-fake-portal:
-    image: 127.0.0.1:5000/report-service-frontend:production
+    image: report-service-frontend:production
     build: ./frontend/fake-unified-portal/.
     ports:
       - 8001:3005

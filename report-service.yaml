@@ -40,9 +40,6 @@ metadata:
   name: report-service
   namespace: default
 spec:
-  clusterIP: 10.105.119.13
-  clusterIPs:
-  - 10.105.119.13
   externalTrafficPolicy: Cluster
   internalTrafficPolicy: Cluster
   ipFamilies:
