@@ -23,7 +23,7 @@ router = APIRouter()
 
 @router.get("/ping/", tags=["ping"])
 async def ping() -> response_model.PingResponse:
-    client = GRPCClient(hostname="report_service", port="50051")
+    client = GRPCClient(hostname="report-service", port="50051")
     response = client.execute(
         rpc_method_name="HealthCheck", protobuf_msg_name="Request", metadata=""
     )
@@ -32,7 +32,7 @@ async def ping() -> response_model.PingResponse:
 
 @router.get("/report/visits/", tags=["reports"])
 async def visit_report() -> response_model.VisitReportResponse:
-    client = GRPCClient(hostname="report_service", port="50051")
+    client = GRPCClient(hostname="report-service", port="50051")
     response = client.execute(
         rpc_method_name="GetVisitCount", protobuf_msg_name="Request", metadata=""
     )

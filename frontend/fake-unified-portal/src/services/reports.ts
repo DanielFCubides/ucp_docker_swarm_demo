@@ -1,4 +1,4 @@
-const API_URL = 'http://swarm.dfcubidesc.com:8000';
+const API_URL = 'http://rest-proxy:8000';
 
 export type Visitors = {
     local_visit_count: number;

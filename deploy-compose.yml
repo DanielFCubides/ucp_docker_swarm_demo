@@ -1,6 +1,6 @@
 services:
   rest-proxy:
-    image: 127.0.0.1:5000/rest-proxy:production
+    image: rest-proxy:production
     build:
       context: .
       dockerfile: ./rest_proxy/Dockerfile
@@ -31,7 +31,7 @@ services:
         order: start-first
 
   frontend-fake-portal:
-    image: 127.0.0.1:5000/report-service-frontend:production
+    image: report-service-frontend:production
     build: ./frontend/fake-unified-portal/.
     ports:
       - 8001:3005
