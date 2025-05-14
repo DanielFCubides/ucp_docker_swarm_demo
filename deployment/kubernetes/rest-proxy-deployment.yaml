@@ -22,7 +22,7 @@ spec:
         app: rest-proxy
     spec:
       containers:
-      - image: pocri.azurecr.io/portals/rest-proxy
+      - image: pocri.azurecr.io/portals/rest-proxy:production
         imagePullPolicy: IfNotPresent
         name: rest-proxy
         ports:
