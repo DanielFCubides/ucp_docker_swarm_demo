@@ -38,7 +38,7 @@ services:
     entrypoint: "npm start"
 
   report_service:
-    image: report-service:k8s
+    image: pocri.azurecr.io/portals/report-service:k8s
     build:
       context: .
       dockerfile: ./report_service/Dockerfile

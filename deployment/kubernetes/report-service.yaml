@@ -16,7 +16,7 @@ spec:
         app: report-service
     spec:
       containers:
-      - image: report-service:k8s
+      - image: pocri.azurecr.io/portals/report-service:k8s
         imagePullPolicy: IfNotPresent
         name: report-service
         resources: {}
