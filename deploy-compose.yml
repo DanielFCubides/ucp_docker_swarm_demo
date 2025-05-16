@@ -32,6 +32,7 @@ services:
 
   frontend-fake-portal:
     image: report-service-frontend:production
+    platform: linux/amd64
     build: ./frontend/fake-unified-portal/.
     ports:
       - 8001:3005
@@ -39,6 +40,7 @@ services:
 
   report_service:
     image: report-service:k8s
+    platform: linux/amd64
     build:
       context: .
       dockerfile: ./report_service/Dockerfile
