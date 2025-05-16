@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: frontend-fake-portal:latest
+        image: pocri.azurecr.io/report-service-frontend:production
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3005
