@@ -9,9 +9,6 @@ metadata:
   resourceVersion: "61287"
   uid: ef22694f-9559-4e08-a3e7-48815475c790
 spec:
-  clusterIP: 10.101.81.19
-  clusterIPs:
-  - 10.101.81.19
   externalTrafficPolicy: Cluster
   internalTrafficPolicy: Cluster
   ipFamilies:

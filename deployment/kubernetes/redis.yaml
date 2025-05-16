@@ -36,9 +36,6 @@ metadata:
   name: redis-cache
   namespace: default
 spec:
-  clusterIP: 10.97.8.201
-  clusterIPs:
-  - 10.97.8.201
   ipFamilies:
   - IPv4
   ipFamilyPolicy: SingleStack
