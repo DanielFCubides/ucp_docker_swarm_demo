@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: report-service-frontend
+  labels:
+    app: report-service-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: report-service-frontend
+  template:
+    metadata:
+      labels:
+        app: report-service-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: frontend-fake-portal:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3005
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
