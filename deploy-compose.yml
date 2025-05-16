@@ -1,6 +1,7 @@
 services:
   rest-proxy:
     image: rest-proxy:production
+    platform: linux/amd64
     build:
       context: .
       dockerfile: ./rest_proxy/Dockerfile
